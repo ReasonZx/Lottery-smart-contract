@@ -5,7 +5,7 @@ from web3 import Web3
 
 def testGetEntranceFee():
     if ("fork" in network.show_active()) :
-        lotterySC = scripts.deployLottery.deployLottery()
+        lotterySC = deployLottery.deployLottery()
     else:  
         lotterySC = lottery[-1]
 
