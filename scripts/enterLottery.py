@@ -4,10 +4,11 @@ from web3 import Web3
 
 
 
-
-
-
-
+def enterLottery(_lotterySC, _account):
+    value = _lotterySC.getEntraceFee() + 100000000
+    enterTx = _lotterySC.enter({"from":_account, "value": value})
+    enterTx.wait(1)
+    print("Entered Lottery!")
 
 
 
@@ -16,7 +17,8 @@ def main():
 
     if ("fork" in network.show_active()) :
         lotterySC = deployLottery.deployLottery()
+        startLottery.startLottery(account, lotterySC)
     else:  
         lotterySC = lottery[-1]
 
-    startLottery.startLottery(account, lotterySC)
+    enterLottery(lotterySC, account)
