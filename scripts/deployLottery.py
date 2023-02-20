@@ -9,7 +9,7 @@ def deployLottery():
     lottery_contract = lottery.deploy(
         helpfulScripts.getContractAddress("eth_usd_price_feed", account),
         helpfulScripts.getContractAddress("vrfCoordinator", account),
-        helpfulScripts.getContractAddress("linkToken", account),
+        helpfulScripts.getContractAddress("link", account),
         helpfulScripts.getContractAddress("keyHash", account),
         helpfulScripts.getContractAddress("fee", account),
         {'from': account},
