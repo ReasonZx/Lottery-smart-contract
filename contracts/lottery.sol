@@ -16,11 +16,13 @@ contract lottery is VRFConsumerBase, Ownable{
 
     address payable[] public players;
     address payable public winner;
+    uint256 public randomness;
     uint256 public usdEntryFee;
     AggregatorV3Interface internal ethUsdPriceFeed;
     LOTTERY_STATE public LotteryState;
     uint256 public fee;
     bytes32 public keyhash;
+    event RequestedRandomness(bytes32 requestId);
 
 
     constructor(address _priceFeedAdress, address _vrfCoordinator, address _link, uint256 _fee, bytes32 _keyhash) public VRFConsumerBase(_vrfCoordinator, _link) {
@@ -54,8 +56,10 @@ contract lottery is VRFConsumerBase, Ownable{
 
     function endLottery() public{
 
-        bytes32 requestId = requestRandomness(keyhash,fee);
         LotteryState = LOTTERY_STATE.CALCULATING_WINNER;
+        bytes32 requestId = requestRandomness(keyhash,fee);
+        emit RequestedRandomness(requestId);
+        
     }
 
     function fulfillRandomness(bytes32 _requestId, uint256 _randomness) internal override {
@@ -71,5 +75,6 @@ contract lottery is VRFConsumerBase, Ownable{
         //reset lottery
         players = new address payable[](0);
         LotteryState = LOTTERY_STATE.CLOSED;
+        randomness = _randomness;
     }
 }

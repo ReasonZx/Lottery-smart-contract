@@ -9,7 +9,7 @@ def endLottery(_account, _lotterySC):
     endingTx = _lotterySC.endLottery({"from" : _account})
     endingTx.wait(1)
     time.sleep(60)
-    print("Lottery Winner is : " + _lotterySC.recentWinner())
+    print("Lottery Winner is : " + _lotterySC.winner())
 
 
 
