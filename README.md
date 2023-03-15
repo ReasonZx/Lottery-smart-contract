@@ -1,6 +1,7 @@
 # Lottery-smart-contract
 
-Smart Contract example deployed @ 0x537088c03ed2a7C15ff739Bf74463ED4768B4CFe on Goerli Testnet
+(might not work anymore as Goerli testnet is getting deprecated)
+Smart Contract example deployed @ 0xe0CD0AfFc52Ed7bD8128aee29041595701020476 on Goerli Testnet
 
 
 # Deploy
@@ -21,6 +22,9 @@ $export WEB3_INFURA_PROJECT_ID="your_infura_project_id"
 ```
 ```
 $brownie run scripts/deployLottery.py --network goerli
+$brownie run scripts/startLottery.py --network goerli
+$brownie run scripts/enterLottery.py --network goerli
+$brownie run scripts/endLottery.py --network goerli
 ```
 
 ## Mainnet-fork
