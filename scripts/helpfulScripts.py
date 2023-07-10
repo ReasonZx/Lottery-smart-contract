@@ -41,7 +41,7 @@ def fundSC (_SCadress, _account=None, _tokenName=None, _ammount = 10000000000000
         print("Using LINK as default Token to fund contract")
         tokenSC = getContract("link")
     else :
-        tokenSC = getContract(contractList(lower(_tokenName)))
+        tokenSC = getContract(_tokenName)
 
     tx = tokenSC.transfer(_SCadress, _ammount, {"from": _account})
     tx.wait(1)
